@@ -7,7 +7,9 @@ abook{{$book->title}}
 <h1>{{$book->id}} </h1>
 
 <h3> {{$book->title}} </h3>
+<img src='{{ asset("uploads/books/$book->img") }}' alt="">
 <p> {{$book->desc}} </p>
+<br>
 <a class="btn btn-primary" href="{{route('books.show',$book->id)}}">show</a>
 <a class="btn btn-secondary" href="{{route('books.updatefm',$book->id)}}">edit</a>
 <a class="btn btn-danger" href="{{route('books.delete',$book->id)}}">delete</a>
