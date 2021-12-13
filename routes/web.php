@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +32,19 @@ Route::post('/books/update/{id}', [BookController::class, 'update'])->name('book
 
 //delete
 Route::get('/books/delete/{id}', [BookController::class, 'delete'])->name('books.delete');
+
+
+//categories
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/show/{id}', [CategoryController::class, 'show'])->name('categories.show');
+
+//create
+Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+
+//update
+Route::get('/categories/updatefm/{id}', [CategoryController::class, 'updatefm'])->name('categories.updatefm');
+Route::post('/categories/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
+
+//delete
+Route::get('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
