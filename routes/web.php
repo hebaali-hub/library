@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
@@ -48,3 +49,6 @@ Route::post('/categories/update/{id}', [CategoryController::class, 'update'])->n
 
 //delete
 Route::get('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+// auth
+Route::get('/register',[AuthController::class,'register'])->name('auth.reg');
+Route::post('/handlereg', [AuthController::class, 'handlereg'])->name('auth.handlereg');

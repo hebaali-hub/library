@@ -13,4 +13,7 @@ class Book extends Model
         'desc',
         'img',
     ];
+    public function category(){
+        return $this->belongsToMany(Category::class);
+    }
 }

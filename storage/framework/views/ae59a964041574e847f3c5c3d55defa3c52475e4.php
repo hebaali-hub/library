@@ -9,6 +9,14 @@ abook<?php echo e($book->title); ?>
 <h3> <?php echo e($book->title); ?> </h3>
 <img src='<?php echo e(asset("uploads/books/$book->img")); ?>' alt="">
 <p> <?php echo e($book->desc); ?> </p>
+<p class="alert bg-danger text-white">category:</p>
+<ul>
+    <?php $__currentLoopData = $book->category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <li><p> <?php echo e($cat->name); ?></p></li>
+     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</ul>
+
+
 <br>
 <a class="btn btn-primary" href="<?php echo e(route('books.show',$book->id)); ?>">show</a>
 <a class="btn btn-secondary" href="<?php echo e(route('books.updatefm',$book->id)); ?>">edit</a>
