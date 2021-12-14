@@ -52,3 +52,8 @@ Route::get('/categories/delete/{id}', [CategoryController::class, 'delete'])->na
 // auth
 Route::get('/register',[AuthController::class,'register'])->name('auth.reg');
 Route::post('/handlereg', [AuthController::class, 'handlereg'])->name('auth.handlereg');
+
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/handlelog', [AuthController::class, 'handlelog'])->name('auth.handlelog');
+
+Route::get('/logout',[AuthController::class, 'logout'])->name('auth.logout');
