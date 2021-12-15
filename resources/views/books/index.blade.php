@@ -5,6 +5,15 @@ all list
 @section('content')
 
   <h1>All Books</h1>
+  @auth
+ your Notes
+ {{-- {{Auth::user()->id}} --}}
+  @foreach (Auth::user()->notes as $note)
+        <p> {{ $note->content }}</p>
+
+      @endforeach
+      <a class="btn btn-primary" href="{{route('notes.create')}}">create notes</a>
+  @endauth
 @foreach ($book_list as $book)
 <hr>
 <h3> <a href="{{url('/books/show',$book->id)}}">{{$book->title}}</a></h3>

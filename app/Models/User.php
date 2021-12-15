@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Note;
 
 class User extends Authenticatable
 {
@@ -17,11 +18,15 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 
 
     protected $hidden = [
         'password',
-       
+
     ];
 
 

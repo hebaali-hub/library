@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\NoteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,5 +61,8 @@ Route::middleware('islogin')->group(function(){
     Route::get('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
+    //create
+    Route::get('/notes/create', [NoteController::class, 'create'])->name('notes.create');
+    Route::post('/notes/store', [NoteController::class, 'store'])->name('notes.store');
 
 });
