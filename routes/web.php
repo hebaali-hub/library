@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NoteController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +18,9 @@ use App\Http\Controllers\NoteController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 //select
 Route::get('/books', [BookController::class,'index'])->name('books.index');
 Route::get('/books/show/{id}', [BookController::class,'show'])->name('books.show');
@@ -66,3 +68,5 @@ Route::middleware('islogin')->group(function(){
     Route::post('/notes/store', [NoteController::class, 'store'])->name('notes.store');
 
 });
+Route::get('login/github', [AuthController::class,'redirectToProvider'])->name('auth.github.redirect');
+Route::get('login/github/callback',[AuthController::class,'handleProviderCallback'] )->name('auth.github.callback');

@@ -17,6 +17,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
+        'oauth_token',
+        'access_token',
     ];
     public function notes()
     {

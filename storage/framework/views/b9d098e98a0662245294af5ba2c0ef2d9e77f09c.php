@@ -24,6 +24,8 @@ register form
   <button type="submit" class="btn btn-primary">register</button>
 
 </form>
+  <a class="btn btn-primary" href="<?php echo e(route('auth.github.redirect')); ?>">login github</a>
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\library\resources\views/auth/register.blade.php ENDPATH**/ ?>

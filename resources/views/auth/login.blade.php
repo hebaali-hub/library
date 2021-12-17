@@ -19,6 +19,7 @@ register form
 
   </div>
   <button type="submit" class="btn btn-primary">login</button>
-
 </form>
+  <a class="btn btn-primary" href="{{ route('auth.github.redirect')}}">login github</a>
+
 @endsection

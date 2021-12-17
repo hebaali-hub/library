@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 class AuthController extends Controller
 {
     //
@@ -48,5 +49,35 @@ class AuthController extends Controller
     }
     public function logout(){
         Auth::logout();
+    }
+      public function redirectToProvider()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $user_github = Socialite::driver('github')->user();
+        // dd($user);
+        // $user->token;
+        $db_user=User::where('email','=',$user_github->email)->first();
+        if($db_user==null){
+            $reg_user=User::create([
+                'email'=>$user_github->email,
+                'name'=>$user_github->nickname,
+                'password'=>Hash::make('123456'),
+                'oauth_token'=>$user_github->token,
+            ]);
+            Auth::login($reg_user);
+        }
+        else{
+            Auth::login($db_user);
+        }
+ return redirect(route('books.index'));
     }
 }
