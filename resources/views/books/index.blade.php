@@ -14,6 +14,7 @@ all list
       @endforeach
       <a class="btn btn-primary" href="{{route('notes.create')}}">create notes</a>
   @endauth
+  <a class="btn btn-success" href="{{route('books.create')}}">create</a>
 @foreach ($book_list as $book)
 <hr>
 <h3> <a href="{{url('/books/show',$book->id)}}">{{$book->title}}</a></h3>
@@ -28,6 +29,6 @@ all list
 @endforeach
 <br>
 {{ $book_list->render() }}
-<a class="btn btn-success" href="{{route('books.create')}}">create</a>
+
 
 @endsection

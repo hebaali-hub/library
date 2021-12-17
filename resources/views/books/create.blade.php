@@ -22,6 +22,18 @@ form add book
     <input type="file" class="form-control" name="img">
 
   </div>
+select categories
+  @foreach ($categories as $cat)
+   <div class="form-check">
+<input class="form-check-input" type="checkbox" name="categories_ids[]" value="{{$cat->id}}" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+   {{$cat->name}}
+  </label>
+  </div>
+  @endforeach
+
+
+
   <button type="submit" class="btn btn-primary">add book</button>
 
 </form>

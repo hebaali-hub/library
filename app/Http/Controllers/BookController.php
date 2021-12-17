@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Book;//Book model
 use Illuminate\Http\Request;
-
+use App\Models\Category;
 class BookController extends Controller
 {
     //
@@ -39,7 +39,8 @@ class BookController extends Controller
     }
 //insert form
         public function create(){
-            return view('books/create');
+            $categories=Category::select('id','name')->get();
+            return view('books/create', ['categories' => $categories]);
         }
         public function store(Request $req){
 
@@ -48,7 +49,10 @@ class BookController extends Controller
                 'title'=>'required|string|max:100',
                 'desc'=>'required|string|max:200',
                 'img'=>'required',
+                'categories_ids'=>'required',
+                'categories_ids.*' => 'exists:categories,id',
             ]);
+           // dd($req->all());
             //validate
             //upload img
            $img= $req->file('img');//all info
@@ -57,11 +61,14 @@ class BookController extends Controller
            $img->move(public_path('uploads/books'),$new_nm_img);
 
             //upload img
-           $book=new Book();
-           $book->desc= $req->desc;
-           $book->title = $req->title;
-           $book->img = $new_nm_img;
-           $book->save();
+           $book=Book::create([
+            'title'=>$req->title,
+            'desc'=>$req->desc,
+            'img'=>$new_nm_img,
+           ]);
+           
+           $book->category()->sync($req->categories_ids);
+        
             return redirect(route('books.index'));
         }
 //insert form

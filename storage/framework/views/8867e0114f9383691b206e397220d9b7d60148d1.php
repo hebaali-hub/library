@@ -21,6 +21,19 @@ form add book
     <input type="file" class="form-control" name="img">
 
   </div>
+select categories
+  <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+   <div class="form-check">
+<input class="form-check-input" type="checkbox" name="categories_ids[]" value="<?php echo e($cat->id); ?>" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+   <?php echo e($cat->name); ?>
+
+  </label>
+  </div>
+  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+
   <button type="submit" class="btn btn-primary">add book</button>
 
 </form>
