@@ -75,7 +75,8 @@ class BookController extends Controller
 //update
         public function updatefm($id){
             $book=Book::findOrFail($id);
-            return view('books.edit',['book'=> $book]);
+            $categories=Category::select('id','name')->get();
+            return view('books.edit',['book'=> $book,'categories'=>$categories]);
         }
     public function update(Request $req, $id)
     {
@@ -84,6 +85,8 @@ class BookController extends Controller
                 'title'=>'required|string|max:100',
                 'desc'=>'required|string|max:200',
                  'img' => 'nullable',
+               'categories_ids'=>'required',
+               'categories_ids.*' => 'exists:categories,id',
         ]);
         //validate
         $book = Book::findOrFail($id);
@@ -102,20 +105,21 @@ class BookController extends Controller
 
         //upload img
 
-
+$book->category()->sync($req->categories_ids);
 
         $book->save();
+
         return redirect(route('books.index'));
     }
     //update
     //delete
     public function delete($id)
     {
-
         $book = Book::find($id);
         if($book->img!==null){
             unlink(public_path('uploads/books/').$book->img);
         }
+        $book->category()->sync([]);
         $book->delete();
         return redirect(route('books.index'));
     }
