@@ -19,11 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // book crud
-Route::get('/books',[ApiBookController::class,'index']);
-Route::get('/books/show/{id}',[ApiBookController::class,'show']);
-Route::post('/books/store', [ApiBookController::class, 'store']);
-Route::post('/books/update/{id}', [ApiBookController::class, 'update']);
-Route::get('/books/delete/{id}', [ApiBookController::class, 'delete']);
+// Route::get('/books',[ApiBookController::class,'index']);
+// Route::get('/books/show/{id}',[ApiBookController::class,'show']);
+// Route::post('/books/store', [ApiBookController::class, 'store']);
+// Route::post('/books/update/{id}', [ApiBookController::class, 'update']);
+// Route::get('/books/delete/{id}', [ApiBookController::class, 'delete']);
 //
 // login-register
 
@@ -31,3 +31,13 @@ Route::get('/books/delete/{id}', [ApiBookController::class, 'delete']);
 Route::post('/handlereg', [ApiAuthController::class, 'handlereg']);
 Route::post('/handlelog', [ApiAuthController::class,'handlelog']);
 Route::post('/logout', [ApiAuthController::class, 'logout']);
+
+Route::middleware('isApiUser')->group(function(){
+
+Route::post('/books/store', [ApiBookController::class, 'store']);
+Route::post('/books/update/{id}', [ApiBookController::class, 'update']);
+Route::get('/books/delete/{id}', [ApiBookController::class, 'delete']);
+
+});
+Route::get('/books',[ApiBookController::class,'index']);
+Route::get('/books/show/{id}',[ApiBookController::class,'show']);

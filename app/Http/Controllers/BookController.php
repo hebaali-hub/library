@@ -15,7 +15,7 @@ class BookController extends Controller
         //all data
 
         //selected columns
-        //// $book_list = Book::select('title','desc')->get();
+        //// $book_list = Book::select('title','desc')->get()
         ////dd($book_list);
         //selected columns
 
@@ -26,7 +26,7 @@ class BookController extends Controller
         //where condition
 
         // return view('books/index',compact('book_list'));
-         $book_list=Book::OrderBy('title','desc')->paginate(2);
+        //  $book_list=Book::OrderBy('title','desc')->paginate(2);
         return view('books/index', compact('book_list'));
     }
     public function show($id){
@@ -66,9 +66,9 @@ class BookController extends Controller
             'desc'=>$req->desc,
             'img'=>$new_nm_img,
            ]);
-           
+
            $book->category()->sync($req->categories_ids);
-        
+
             return redirect(route('books.index'));
         }
 //insert form
@@ -125,6 +125,12 @@ $book->category()->sync($req->categories_ids);
     }
      //delete
 
+ public function search(Request $req){
+$keyword=$req->keyword;
+$book=Book::where('title','like',"%$keyword%")->get();
+return response()->json($book);
 
 
+
+}
 }

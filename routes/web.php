@@ -70,3 +70,4 @@ Route::middleware('islogin')->group(function(){
 });
 Route::get('login/github', [AuthController::class,'redirectToProvider'])->name('auth.github.redirect');
 Route::get('login/github/callback',[AuthController::class,'handleProviderCallback'] )->name('auth.github.callback');
+Route::get('/books/search', [BookController::class, 'search'])->name('books.search');

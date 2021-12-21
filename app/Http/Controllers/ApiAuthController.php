@@ -70,6 +70,7 @@ class ApiAuthController extends Controller
     public function logout(Request $req)
     {
         $access_token=$req->access_token;
+
         $user=User::where('access_token','=', $access_token)->first();
         if($user==null){
             $error = 'token not correct';
@@ -77,7 +78,7 @@ class ApiAuthController extends Controller
         }
         else{
             $user->update([
-                'access_token' => Null,
+                'access_token' => null,
             ]);
             $success = 'sucess logout';
             return response()->json($success);

@@ -2,35 +2,64 @@
 all list
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-
+ <input type="text" id="keyword">
   <h1>All Books</h1>
   <?php if(auth()->guard()->check()): ?>
  your Notes
  
+
   <?php $__currentLoopData = Auth::user()->notes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $note): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <p> <?php echo e($note->content); ?></p>
 
       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-      <a class="btn btn-primary" href="<?php echo e(route('notes.create')); ?>">create notes</a>
+      
   <?php endif; ?>
-  <a class="btn btn-success" href="<?php echo e(route('books.create')); ?>">create</a>
-<?php $__currentLoopData = $book_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $book): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-<hr>
-<h3> <a href="<?php echo e(url('/books/show',$book->id)); ?>"><?php echo e($book->title); ?></a></h3>
-<img src='<?php echo e(asset("uploads/books/$book->img")); ?>' alt="">
+  
+<div id="allbooks">
+  <?php $__currentLoopData = $book_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $book): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+ 
+    <h3><?php echo e($book->title); ?></h3>
+
+
 
 <p><?php echo e($book->desc); ?></p>
-<a class="btn btn-primary" href="<?php echo e(route('books.show',$book->id)); ?>">show</a>
-<a class="btn btn-secondary" href="<?php echo e(route('books.updatefm',$book->id)); ?>">edit</a>
-<a class="btn btn-danger" href="<?php echo e(route('books.delete',$book->id)); ?>">delete</a>
+
 
 
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</div>
 <br>
-<?php echo e($book_list->render()); ?>
 
 
 
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+<script>
+    $('#keyword').keyup(function(){
+        let keyword=$(this).val();
+        // console.log(keyword);
+        let url="<?php echo e(route('books.search')); ?>"+"?keyword="+keyword;
+        // console.log(url);
+$.ajax(
+{
+    type:"GET",
+    url:url,
+    contentType: false,
+    processData: false,
+    success: function (data) {   // success callback function
+        // console.log(data);
+        $('#allbooks').empty();
+        for(book of data){
+        $('#allbooks').text();
+          $('#allbooks').append(`<h3>${book.title}</h3><p>${book.desc}</p>`);
+        }
+
+    },
+
+});
+    });
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\library\resources\views/books/index.blade.php ENDPATH**/ ?>

@@ -47,9 +47,10 @@
   <div class="container pt-5">
 @yield('content')
 </div>
+
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
-
+@yield('script')
 </body>
 </html>
 

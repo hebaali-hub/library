@@ -47,9 +47,10 @@
   <div class="container pt-5">
 <?php echo $__env->yieldContent('content'); ?>
 </div>
+
 <script src="<?php echo e(asset('js/jquery.js')); ?>"></script>
 <script src="<?php echo e(asset('js/bootstrap.bundle.js')); ?>"></script>
-
+<?php echo $__env->yieldContent('script'); ?>
 </body>
 </html>
 
