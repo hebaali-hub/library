@@ -3,6 +3,11 @@
 all list
 @endsection
 @section('content')
+
+<x-alert msg="hello world" type="danger"></x-alert>
+<x-alert msg="hello world" type="success"></x-alert>
+<?php $x="xxxxx"?>
+<x-alert :msg="$x" type="info"></x-alert>
  <input type="text" id="keyword">
   <h1>All Books</h1>
   @auth
