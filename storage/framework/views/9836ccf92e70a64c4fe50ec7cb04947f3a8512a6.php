@@ -8,42 +8,17 @@
 <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.css')); ?>">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-        
-           <li class="nav-item">
-          <a class="nav-link" href="<?php echo e(route('books.index')); ?>">book</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link" href="<?php echo e(route('categories.index')); ?>">category</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link" href="<?php echo e(route('auth.logout')); ?>">Logout</a>
-        </li>
-        
-
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo e(route('auth.reg')); ?>">Register</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link" href="<?php echo e(route('auth.login')); ?>">Login</a>
-        </li>
-
-
-
-
-      </ul>
-
-    </div>
-  </div>
-</nav>
+ <?php if (isset($component)) { $__componentOriginal08d9d46900ea68d5dc06d8728734a2fd47ca153c = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Navbar::class, []); ?>
+<?php $component->withName('navbar'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?> <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal08d9d46900ea68d5dc06d8728734a2fd47ca153c)): ?>
+<?php $component = $__componentOriginal08d9d46900ea68d5dc06d8728734a2fd47ca153c; ?>
+<?php unset($__componentOriginal08d9d46900ea68d5dc06d8728734a2fd47ca153c); ?>
+<?php endif; ?>
   <div class="container pt-5">
 <?php echo $__env->yieldContent('content'); ?>
 </div>

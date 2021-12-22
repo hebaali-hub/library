@@ -27,7 +27,10 @@ class BookController extends Controller
 
         // return view('books/index',compact('book_list'));
         //  $book_list=Book::OrderBy('title','desc')->paginate(2);
-        return view('books/index', compact('book_list'));
+        //step category before x-component
+        // $cat=Category::get();
+        // return view('books/index',['book_list'=>$book_list,'cat'=>$cat]);
+        return view('books/index',['book_list'=>$book_list]);
     }
     public function show($id){
 
@@ -35,6 +38,7 @@ class BookController extends Controller
         // $book = Book::where('id','=', $id)->first();
 
         $book = Book::findOrFail($id);
+
         return view('books/show',['book'=> $book]);
     }
 //insert form
