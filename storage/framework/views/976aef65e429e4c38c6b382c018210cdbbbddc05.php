@@ -9,13 +9,13 @@
 
         
            <li class="nav-item">
-          <a class="nav-link" href="<?php echo e(route('books.index')); ?>">book</a>
+          <a class="nav-link" href="<?php echo e(route('books.index')); ?>"><?php echo app('translator')->get('site.books'); ?></a>
         </li>
           
 
-        <div class="dropdown">
+<div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-   category
+   <?php echo app('translator')->get('site.cats'); ?>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 <?php $__currentLoopData = $cats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -23,8 +23,20 @@
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
   </ul>
 </div>
+  
+  <div class="dropdown">
+   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+  choose
+  </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+
+  <li><a class="dropdown-item" href="<?php echo e(route('lang.ar')); ?>">ar</a></li>
+  <li><a class="dropdown-item" href="<?php echo e(route('lang.en')); ?>">en</a></li>
+
+  </ul>
+</div>
           <li class="nav-item">
-          <a class="nav-link" href="<?php echo e(route('auth.logout')); ?>">Logout</a>
+          <a class="nav-link" href="<?php echo e(route('auth.logout')); ?>"><?php echo app('translator')->get('site.logout'); ?></a>
         </li>
         
 
